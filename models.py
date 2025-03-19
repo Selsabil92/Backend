@@ -1,17 +1,27 @@
-from datetime import datetime, timedelta
-import jwt 
-from flask import current_app
-from database import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
-    def generate_token(self):
-        # Génère un token JWT avec la clé secrète
-        token = jwt.encode({
-            'username': self.username,
-            'exp': datetime.utcnow() + timedelta(hours=1)
-        }, current_app.config['SECRET_KEY'], algorithm='HS256')
-        return token
+    def __repr__(self):
+        return f'<User {self.username}>'
+
+class ScanResult(db.Model):
+    __tablename__ = 'scan_results'
+
+    id = db.Column(db.Integer, primary_key=True)
+    scan_type = db.Column(db.String(50), nullable=False)
+    result = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('scan_results', lazy=True))
+
+    def __repr__(self):
+        return f'<ScanResult {self.scan_type} - {self.result}>'

@@ -14,22 +14,27 @@ Avant de commencer, assurez-vous d'avoir les prérequis suivants installés :
 
 ## Installation
 
-1. Clonez ce dépôt :
+1. Clonez le dépôt :
     ```bash
-    git clone <repository_url>
-    cd <project_directory>
+    git clone https://github.com/Selsabil92/Backend
+    cd Backend
+    ```
+2. Activez l'environnement virtuel :
+    ```bash
+    python3 -m venv venv
+    .\venv\Scripts\activate
     ```
 
-2. Installez les dépendances :
+3. Installez les dépendances :
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Configurez votre fichier `.env` avec vos variables d'environnement.
+4. Configurez votre fichier `.env` avec vos variables d'environnement.
 
-4. Lancez l'application Flask :
+5. Lancez l'application Flask :
     ```bash
-    flask run
+    python app.py
     ```
 
 ## Fonctionnalités

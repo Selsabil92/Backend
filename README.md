@@ -16,7 +16,7 @@ Avant de commencer, assurez-vous d'avoir les prérequis suivants installés :
 
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/Selsabil92/Backend
+    git clone https://github.com/Selsabil92/Backend.git
     cd Backend
     ```
 2. Activez l'environnement virtuel :
